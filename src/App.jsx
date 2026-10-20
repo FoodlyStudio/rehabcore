@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import {
   MOCK_EXERCISES_OGOLNOROZWOJOWE,
+  MOCK_EXERCISES_VIDEOS,
   MOCK_TRENINGI_OGOLNOROZWOJOWE,
   MOCK_PLANS,
   MOCK_COMPLETIONS,
@@ -35,24 +36,24 @@ import {
 // --- BAZA DANYCH (MOCK DATA) ---
 
 const MOCK_EXERCISES_BASE = [
-  { id: 1, name: 'Cat-Cow (Koci Grzbiet)', category: 'Mobilizacja', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Łatwe', duration: '3 min', description: 'Klasyczne ćwiczenie mobilizujące cały kręgosłup. Poprawia elastyczność i zmniejsza napięcie w dolnym odcinku.', instructions: '1. Przyjmij pozycję klęku podpartego.\n2. Z wdechem wygnij kręgosłup w dół, unosząc głowę (krowa).\n3. Z wydechem zaokrąglij plecy, chowając głowę między ramiona (kot).\n4. Wykonuj ruchy płynnie w rytm oddechu.' },
-  { id: 2, name: 'Bird Dog', category: 'Stabilizacja', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Średnie', duration: '5 min', description: 'Ćwiczenie wzmacniające mięśnie głębokie tułowia (core), poprawiające stabilność kręgosłupa i koordynację.', instructions: '1. Klęk podparty, plecy proste.\n2. Jednocześnie unieś i wyprostuj prawą rękę i lewą nogę.\n3. Utrzymaj pozycję przez 2 sekundy, nie wyginając lędźwi.\n4. Wróć do pozycji wyjściowej i zmień stronę.' },
-  { id: 3, name: 'Dead Bug (Martwy Robak)', category: 'Wzmacnianie', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Średnie', duration: '5 min', description: 'Bezpieczne i niezwykle skuteczne ćwiczenie na mięśnie brzucha, uczące kontroli miednicy.', instructions: '1. Leżenie na plecach, ręce pionowo w górze, nogi zgięte w biodrach i kolanach pod kątem 90 stopni.\n2. Dociśnij odcinek lędźwiowy do maty.\n3. Powoli opuszczaj prawą rękę za głowę i prostuj lewą nogę tuż nad ziemię.\n4. Wróć i zmień stronę.' },
-  { id: 4, name: 'Most biodrowy (Glute Bridge)', category: 'Wzmacnianie', bodyPart: 'Biodro', difficulty: 'Łatwe', duration: '4 min', description: 'Wzmacnia mięśnie pośladkowe i tył uda, odciążając odcinek lędźwiowy.', instructions: '1. Leżenie na plecach, nogi ugięte, stopy na szerokość bioder.\n2. Zepnij pośladki i unieś biodra do góry, tworząc linię prostą od kolan po barki.\n3. Przytrzymaj 2 sekundy u góry.\n4. Powoli opuść.' },
+  { id: 1, name: 'Cat-Cow (Koci Grzbiet)', category: 'Mobilizacja', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Łatwe', duration: '3 min', videoUrl: '/videos/klatka-piersiowa/Cat-Cow Stretch.mov', description: 'Klasyczne ćwiczenie mobilizujące cały kręgosłup. Poprawia elastyczność i zmniejsza napięcie w dolnym odcinku.', instructions: '1. Przyjmij pozycję klęku podpartego.\n2. Z wdechem wygnij kręgosłup w dół, unosząc głowę (krowa).\n3. Z wydechem zaokrąglij plecy, chowając głowę między ramiona (kot).\n4. Wykonuj ruchy płynnie w rytm oddechu.' },
+  { id: 2, name: 'Bird Dog', category: 'Stabilizacja', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Średnie', duration: '5 min', videoUrl: '/videos/FBW/bird dog.mov', description: 'Ćwiczenie wzmacniające mięśnie głębokie tułowia (core), poprawiające stabilność kręgosłupa i koordynację.', instructions: '1. Klęk podparty, plecy proste.\n2. Jednocześnie unieś i wyprostuj prawą rękę i lewą nogę.\n3. Utrzymaj pozycję przez 2 sekundy, nie wyginając lędźwi.\n4. Wróć do pozycji wyjściowej i zmień stronę.' },
+  { id: 3, name: 'Dead Bug (Martwy Robak)', category: 'Wzmacnianie', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Średnie', duration: '5 min', videoUrl: '/videos/FBW/deadbug.mov', description: 'Bezpieczne i niezwykle skuteczne ćwiczenie na mięśnie brzucha, uczące kontroli miednicy.', instructions: '1. Leżenie na plecach, ręce pionowo w górze, nogi zgięte w biodrach i kolanach pod kątem 90 stopni.\n2. Dociśnij odcinek lędźwiowy do maty.\n3. Powoli opuszczaj prawą rękę za głowę i prostuj lewą nogę tuż nad ziemię.\n4. Wróć i zmień stronę.' },
+  { id: 4, name: 'Most biodrowy (Glute Bridge)', category: 'Wzmacnianie', bodyPart: 'Biodro', difficulty: 'Łatwe', duration: '4 min', videoUrl: '/videos/konczyna-dolna/glutebridge.mov', description: 'Wzmacnia mięśnie pośladkowe i tył uda, odciążając odcinek lędźwiowy.', instructions: '1. Leżenie na plecach, nogi ugięte, stopy na szerokość bioder.\n2. Zepnij pośladki i unieś biodra do góry, tworząc linię prostą od kolan po barki.\n3. Przytrzymaj 2 sekundy u góry.\n4. Powoli opuść.' },
   { id: 5, name: 'Mobilizacja barku przy ścianie', category: 'Mobilizacja', bodyPart: 'Bark', difficulty: 'Łatwe', duration: '3 min', description: 'Zwiększa zakres ruchu w stawie ramiennym, idealne przy sztywności i po urazach.', instructions: '1. Stań bokiem do ściany.\n2. Połóż dłoń na ścianie na wysokości barku.\n3. Powoli przesuwaj palce w górę ściany, podchodząc bliżej, aż poczujesz rozciąganie.\n4. Przytrzymaj i powoli wróć.' },
   { id: 6, name: 'Ślizg pięty (Heel Slide)', category: 'Mobilizacja', bodyPart: 'Kolano', difficulty: 'Bardzo łatwe', duration: '4 min', description: 'Podstawowe ćwiczenie po urazach i operacjach kolana (np. ACL) przywracające zgięcie.', instructions: '1. Leżenie na plecach, nogi proste.\n2. Powoli zginaj jedno kolano, przesuwając piętę po macie w stronę pośladka.\n3. Zegnij do granicy bólu.\n4. Powoli wyprostuj nogę.' },
-  { id: 7, name: 'Rozciąganie zginaczy biodra', category: 'Rozciąganie', bodyPart: 'Biodro', difficulty: 'Średnie', duration: '3 min', description: 'Niweluje przykurcze po długotrwałym siedzeniu, pomaga przy bólach dolnego odcinka pleców.', instructions: '1. Pozycja klęku jednonóż (wykrok).\n2. Podwiń miednicę (napnij pośladek nogi z tyłu).\n3. Delikatnie przenieś ciężar ciała do przodu, nie wyginając lędźwi.\n4. Utrzymaj pozycję 30 sekund.' },
+  { id: 7, name: 'Rozciąganie zginaczy biodra', category: 'Rozciąganie', bodyPart: 'Biodro', difficulty: 'Średnie', duration: '3 min', videoUrl: '/videos/konczyna-dolna/hip flexor stretch.mov', description: 'Niweluje przykurcze po długotrwałym siedzeniu, pomaga przy bólach dolnego odcinka pleców.', instructions: '1. Pozycja klęku jednonóż (wykrok).\n2. Podwiń miednicę (napnij pośladek nogi z tyłu).\n3. Delikatnie przenieś ciężar ciała do przodu, nie wyginając lędźwi.\n4. Utrzymaj pozycję 30 sekund.' },
   { id: 8, name: 'Równowaga na jednej nodze', category: 'Stabilizacja', bodyPart: 'Staw skokowy', difficulty: 'Średnie', duration: '5 min', description: 'Poprawia propriocepcję i stabilność stawu skokowego po skręceniach.', instructions: '1. Stań prosto blisko ściany lub krzesła (do asekuracji).\n2. Unieś jedną nogę.\n3. Utrzymaj równowagę przez 30-60 sekund.\n4. Dla utrudnienia: zamknij oczy.' },
   { id: 9, name: 'McKenzie Extension', category: 'Mobilizacja', bodyPart: 'Kręgosłup lędźwiowy', difficulty: 'Łatwe', duration: '3 min', description: 'Centralizacja bólu dyskowego. Wykonywać tylko z zalecenia fizjoterapeuty.', instructions: '1. Połóż się na brzuchu.\n2. Oprzyj się na przedramionach.\n3. Jeśli to bezbolesne, wyprostuj łokcie, unosząc klatkę piersiową w górę.\n4. Miednica zostaje na macie. Przytrzymaj 2 sekundy i opuść.' },
   { id: 10, name: 'Retrakcja łopatek', category: 'Stabilizacja', bodyPart: 'Kręgosłup piersiowy', difficulty: 'Łatwe', duration: '3 min', description: 'Koryguje postawę (zaokrąglone plecy) i zmniejsza napięcie w karku.', instructions: '1. Pozycja siedząca lub stojąca, plecy proste.\n2. Ściągnij łopatki do siebie i lekko w dół.\n3. Utrzymaj napięcie przez 3-5 sekund.\n4. Rozluźnij.' },
-  { id: 11, name: 'Clamshell (Muszla)', category: 'Wzmacnianie', bodyPart: 'Biodro', difficulty: 'Średnie', duration: '4 min', description: 'Wzmacnia mięsień pośladkowy średni, kluczowy dla stabilizacji miednicy i kolana.', instructions: '1. Leżenie na boku, kolana zgięte pod kątem 90 stopni, stopy złączone.\n2. Unieś górne kolano jak najwyżej, nie odrywając stóp od siebie i nie cofając miednicy.\n3. Powoli opuść kolano.' },
-  { id: 12, name: 'Wall Slides (Ślizgi po ścianie)', category: 'Mobilizacja', bodyPart: 'Bark', difficulty: 'Średnie', duration: '5 min', description: 'Świetne ćwiczenie na mobilność obręczy barkowej i aktywację dolnego czworobocznego.', instructions: '1. Stań plecami do ściany, pięty, pośladki, plecy i głowa dotykają ściany.\n2. Ręce ugięte w łokciach (kąt 90st) przylegają do ściany.\n3. Powoli unoś ramiona w górę, ślizgając się po ścianie.\n4. Wróć powoli w dół.' },
-  { id: 13, name: 'Izometria szyi (Przód/Tył)', category: 'Stabilizacja', bodyPart: 'Szyja', difficulty: 'Łatwe', duration: '3 min', description: 'Wzmacnia mięśnie szyi bez ruchu w stawie, bezpieczne po urazach typu whiplash.', instructions: '1. Usiądź prosto.\n2. Przyłóż dłoń do czoła i delikatnie naciskaj głową na dłoń, stawiając opór.\n3. Utrzymaj 5 sekund.\n4. Powtórz to samo z dłonią z tyłu głowy.' },
+  { id: 11, name: 'Clamshell (Muszla)', category: 'Wzmacnianie', bodyPart: 'Biodro', difficulty: 'Średnie', duration: '4 min', videoUrl: '/videos/konczyna-dolna/banded clamshell.mov', description: 'Wzmacnia mięsień pośladkowy średni, kluczowy dla stabilizacji miednicy i kolana.', instructions: '1. Leżenie na boku, kolana zgięte pod kątem 90 stopni, stopy złączone.\n2. Unieś górne kolano jak najwyżej, nie odrywając stóp od siebie i nie cofając miednicy.\n3. Powoli opuść kolano.' },
+  { id: 12, name: 'Wall Slides (Ślizgi po ścianie)', category: 'Mobilizacja', bodyPart: 'Bark', difficulty: 'Średnie', duration: '5 min', videoUrl: '/videos/konczyna-gorna-barki/Wall Slides.mov', description: 'Świetne ćwiczenie na mobilność obręczy barkowej i aktywację dolnego czworobocznego.', instructions: '1. Stań plecami do ściany, pięty, pośladki, plecy i głowa dotykają ściany.\n2. Ręce ugięte w łokciach (kąt 90st) przylegają do ściany.\n3. Powoli unoś ramiona w górę, ślizgając się po ścianie.\n4. Wróć powoli w dół.' },
+  { id: 13, name: 'Izometria szyi (Przód/Tył)', category: 'Stabilizacja', bodyPart: 'Szyja', difficulty: 'Łatwe', duration: '3 min', videoUrl: '/videos/plecy-C/Isometric Neck Flexion Press.mov', description: 'Wzmacnia mięśnie szyi bez ruchu w stawie, bezpieczne po urazach typu whiplash.', instructions: '1. Usiądź prosto.\n2. Przyłóż dłoń do czoła i delikatnie naciskaj głową na dłoń, stawiając opór.\n3. Utrzymaj 5 sekund.\n4. Powtórz to samo z dłonią z tyłu głowy.' },
   { id: 14, name: 'Rozciąganie łydki przy ścianie', category: 'Rozciąganie', bodyPart: 'Staw skokowy', difficulty: 'Łatwe', duration: '4 min', description: 'Klasyczne rozciąganie mięśnia brzuchatego łydki. Pomaga przy zapaleniu ścięgna Achillesa.', instructions: '1. Stań przodem do ściany, oprzyj dłonie.\n2. Jedna noga z tyłu, prosta w kolanie, pięta wciśnięta w podłogę.\n3. Przesuń biodra do przodu, aż poczujesz rozciąganie w tylnej nodze.\n4. Utrzymaj 30 sekund.' },
-  { id: 15, name: 'Rotacja tułowia w leżeniu', category: 'Mobilizacja', bodyPart: 'Kręgosłup piersiowy', difficulty: 'Łatwe', duration: '4 min', description: 'Poprawia rotację w odcinku piersiowym, otwiera klatkę piersiową.', instructions: '1. Leżenie na boku, ręce wyciągnięte przed siebie, złączone.\n2. Górną rękę przenieś górą za siebie, starając się położyć łopatkę na macie.\n3. Wzrok podąża za dłonią.\n4. Wróć do pozycji wyjściowej.' }
+  { id: 15, name: 'Rotacja tułowia w leżeniu', category: 'Mobilizacja', bodyPart: 'Kręgosłup piersiowy', difficulty: 'Łatwe', duration: '4 min', videoUrl: '/videos/plecy-TH/Side-Lying Thoracic Rotation.mov', description: 'Poprawia rotację w odcinku piersiowym, otwiera klatkę piersiową.', instructions: '1. Leżenie na boku, ręce wyciągnięte przed siebie, złączone.\n2. Górną rękę przenieś górą za siebie, starając się położyć łopatkę na macie.\n3. Wzrok podąża za dłonią.\n4. Wróć do pozycji wyjściowej.' }
 ];
 
-const MOCK_EXERCISES = [...MOCK_EXERCISES_BASE, ...MOCK_EXERCISES_OGOLNOROZWOJOWE];
+const MOCK_EXERCISES = [...MOCK_EXERCISES_BASE, ...MOCK_EXERCISES_OGOLNOROZWOJOWE, ...MOCK_EXERCISES_VIDEOS];
 
 const INITIAL_PATIENTS = [
   { id: 101, firstName: 'Anna', lastName: 'Kowalska', email: 'anna@example.com', phone: '+48 123 456 789', condition: 'Ból odcinka lędźwiowego', bodyPart: 'Lędźwia', notes: 'Ból promieniujący do pośladka. Siedzący tryb pracy.', status: 'Aktywny plan', assignedExercises: [{ exerciseId: 1, sets: 3, reps: 10, frequency: 'Codziennie' }, { exerciseId: 2, sets: 3, reps: 8, frequency: 'Co 2 dni' }, { exerciseId: 9, sets: 1, reps: 10, frequency: 'Rano i wieczorem' }] },
@@ -123,6 +124,26 @@ const VideoPlaceholder = ({ duration }) => (
     </div>
   </div>
 );
+
+const encodeVideoUrl = (url) => {
+  if (!url) return '';
+  return '/' + url.slice(1).split('/').map(encodeURIComponent).join('/');
+};
+
+const ExerciseVideo = ({ videoUrl, duration }) => {
+  if (!videoUrl) return <VideoPlaceholder duration={duration} />;
+  return (
+    <div className="w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden shadow-sm">
+      <video
+        src={encodeVideoUrl(videoUrl)}
+        controls
+        playsInline
+        preload="metadata"
+        className="w-full h-full object-contain"
+      />
+    </div>
+  );
+};
 
 const Input = ({ label, type = 'text', placeholder, value, onChange, textarea }) => (
   <div className="space-y-1.5 w-full">
@@ -273,7 +294,7 @@ export default function App() {
         <div className="w-20 h-20 bg-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200 mb-6">
           <HeartPulse className="text-white" size={40} strokeWidth={2.5} />
         </div>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">RehabCore</h1>
+        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">RehaPlaner</h1>
         <p className="text-slate-600 mt-3 text-sm max-w-[280px] leading-relaxed">
           System prowadzenia pacjentów przez fizjoterapeutów. Plany treningowe, baza ćwiczeń i monitoring postępów.
         </p>
@@ -290,7 +311,7 @@ export default function App() {
       <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-900/50 mb-6 relative z-10 animate-pulse">
         <HeartPulse className="text-emerald-700" size={48} strokeWidth={2.5} />
       </div>
-      <h1 className="text-4xl font-extrabold text-white tracking-tight relative z-10">RehabCore</h1>
+      <h1 className="text-4xl font-extrabold text-white tracking-tight relative z-10">RehaPlaner</h1>
       <p className="text-emerald-100 mt-2 font-medium tracking-wide relative z-10 opacity-80">Twój ruch. Twoje zdrowie.</p>
     </div>
   );
@@ -1125,12 +1146,21 @@ export default function App() {
 
   const renderLibrary = () => {
     const isPT = role === 'pt';
-    const categories = ['Wszystkie', 'Lędźwia', 'Bark', 'Biodro', 'Kolano', 'Mobilizacja', 'Wzmacnianie', 'Trening ogólnorozwojowy'];
-    
-    // Prosta logika filtrowania
+    const categories = [
+      'Wszystkie', 'Kończyna dolna', 'Kończyna górna', 'Bark', 'Plecy', 'Klatka piersiowa',
+      'Core', 'Kolano', 'Biodro', 'Kostka', 'Szyja', 'FBW', 'Mobilizacja', 'Wzmacnianie',
+    ];
+
     const filteredExercises = MOCK_EXERCISES.filter(ex => {
-      const matchesSearch = ex.name.toLowerCase().includes(searchQuery.toLowerCase()) || ex.bodyPart.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesCat = filterCategory === 'Wszystkie' || ex.bodyPart.includes(filterCategory) || ex.category.includes(filterCategory);
+      const q = searchQuery.toLowerCase();
+      const matchesSearch = ex.name.toLowerCase().includes(q) || ex.bodyPart.toLowerCase().includes(q) || ex.category.toLowerCase().includes(q);
+      const matchesCat = filterCategory === 'Wszystkie'
+        || ex.bodyPart.includes(filterCategory)
+        || ex.category.includes(filterCategory)
+        || (filterCategory === 'Kończyna dolna' && ['Kolano', 'Biodro', 'Kostka', 'Nogi', 'Stopa'].some(p => ex.bodyPart.includes(p)))
+        || (filterCategory === 'Kończyna górna' && ['Bark', 'Biceps', 'Triceps', 'Przedramię'].some(p => ex.bodyPart.includes(p)))
+        || (filterCategory === 'Plecy' && ['Kręgosłup', 'Szyja', 'Plecy'].some(p => ex.bodyPart.includes(p)))
+        || (filterCategory === 'FBW' && ex.category === 'FBW');
       return matchesSearch && matchesCat;
     });
 
@@ -1172,14 +1202,26 @@ export default function App() {
           {filteredExercises.map(ex => (
             <Card key={ex.id} onClick={() => { setSelectedExerciseId(ex.id); navigate('exercise_detail'); }} className="p-0 overflow-hidden group">
               <div className="h-44 bg-slate-100 relative">
+                {ex.videoUrl ? (
+                  <video
+                    src={encodeVideoUrl(ex.videoUrl)}
+                    preload="none"
+                    playsInline
+                    muted
+                    className="w-full h-full object-cover"
+                    onMouseEnter={e => { e.currentTarget.play(); }}
+                    onMouseLeave={e => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
+                  />
+                ) : null}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent z-10"></div>
-                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-black/10">
-                  <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl transform scale-75 group-hover:scale-100 transition-transform">
+                <div className="absolute inset-0 flex items-center justify-center z-20 opacity-100 group-hover:opacity-0 transition-opacity">
+                  <div className="w-14 h-14 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl">
                      <Play className="text-emerald-700 ml-1.5" size={24} fill="currentColor" />
                   </div>
                 </div>
-                <div className="absolute top-3 left-3 z-20">
+                <div className="absolute top-3 left-3 z-20 flex gap-1.5">
                   <Badge text={ex.category} type="default" />
+                  {ex.videoUrl && <span className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wide bg-emerald-700 text-white">▶ wideo</span>}
                 </div>
                 <div className="absolute bottom-3 right-3 z-20 bg-slate-900/80 backdrop-blur-sm px-2.5 py-1 rounded-lg text-xs font-bold text-white tracking-wide">
                   {ex.duration}
@@ -1213,7 +1255,7 @@ export default function App() {
         <Header title="Szczegóły" onBack={() => navigate(isPT ? 'library' : (activeTab === 'general' ? 'patient_general' : 'dashboard'), activeTab === 'general' ? 'general' : activeTab)} />
 
         <div className="px-5 py-3">
-          <VideoPlaceholder duration={selectedExercise.duration} />
+          <ExerciseVideo videoUrl={selectedExercise.videoUrl} duration={selectedExercise.duration} />
         </div>
 
         <div className="p-6 space-y-8">
@@ -1521,7 +1563,7 @@ export default function App() {
           </div>
         </div>
         <div className="p-5 flex-1 overflow-y-auto">
-          <VideoPlaceholder duration={current.duration} />
+          <ExerciseVideo videoUrl={current.videoUrl} duration={current.duration} />
           <h2 className="text-xl font-bold text-slate-900 mt-5">{current.name}</h2>
           <p className="text-slate-600 text-sm mt-2 leading-relaxed">{current.description}</p>
           <div className="mt-2 flex items-center gap-2 text-slate-500 text-sm">
@@ -2265,7 +2307,7 @@ export default function App() {
             <Card className="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50">
               <div className="flex items-center gap-4 text-slate-700">
                 <div className="p-2 bg-slate-100 rounded-lg text-slate-600"><Info size={20} /></div>
-                <span className="font-bold text-[15px]">O programie RehabCore</span>
+                <span className="font-bold text-[15px]">O programie RehaPlaner</span>
               </div>
               <ChevronRight size={18} className="text-slate-300" />
             </Card>

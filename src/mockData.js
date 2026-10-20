@@ -1,5 +1,7 @@
 // Rozszerzone dane demo – plany, treningi, nawodnienie, gabinet, trening ogólnorozwojowy
 
+export { MOCK_EXERCISES_VIDEOS } from './exercisesDatabase';
+
 export const toDateKey = (d) => d.toISOString().slice(0, 10);
 export const addDays = (date, n) => { const r = new Date(date); r.setDate(r.getDate() + n); return r; };
 const getToday = () => new Date();
@@ -8,11 +10,11 @@ const getToday = () => new Date();
 export const MOCK_EXERCISES_OGOLNOROZWOJOWE = [
   { id: 101, name: 'Przysiad do boxa', category: 'Trening ogólnorozwojowy', bodyPart: 'Nogi', difficulty: 'Łatwe', duration: '4 min', description: 'Bezpieczna wersja przysiadu z kontrolą głębokości.', instructions: '1. Ustaw box lub ławkę za sobą.\n2. Wykonuj przysiad do momentu kontaktu z boxem.\n3. Wstań kontrolowanie.' },
   { id: 102, name: 'Glute Bridge', category: 'Trening ogólnorozwojowy', bodyPart: 'Pośladki', difficulty: 'Łatwe', duration: '4 min', description: 'Wzmacnianie pośladków i tylnej taśmy.', instructions: '1. Leżenie na plecach, nogi ugięte.\n2. Unieś biodra do linii barki–kolana.\n3. Ściśnij pośladki u góry.' },
-  { id: 103, name: 'Bird Dog', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Średnie', duration: '5 min', description: 'Stabilizacja core i koordynacja.', instructions: '1. Klęk podparty.\n2. Jednocześnie wyprostuj przeciwną rękę i nogę.\n3. Utrzymaj 2 s i zmień stronę.' },
-  { id: 104, name: 'Plank na kolanach', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Łatwe', duration: '3 min', description: 'Deska w wersji ułatwionej.', instructions: '1. Podpór na przedramionach, kolana na macie.\n2. Utrzymaj napięty brzuch i prostą linię ciała.' },
+  { id: 103, name: 'Bird Dog', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Średnie', duration: '5 min', videoUrl: '/videos/FBW/bird dog.mov', description: 'Stabilizacja core i koordynacja.', instructions: '1. Klęk podparty.\n2. Jednocześnie wyprostuj przeciwną rękę i nogę.\n3. Utrzymaj 2 s i zmień stronę.' },
+  { id: 104, name: 'Plank na kolanach', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Łatwe', duration: '3 min', videoUrl: '/videos/FBW/plank.mov', description: 'Deska w wersji ułatwionej.', instructions: '1. Podpór na przedramionach, kolana na macie.\n2. Utrzymaj napięty brzuch i prostą linię ciała.' },
   { id: 105, name: 'Side steps z gumą', category: 'Trening ogólnorozwojowy', bodyPart: 'Nogi', difficulty: 'Średnie', duration: '4 min', description: 'Wzmacnianie odwodzicieli biodra.', instructions: '1. Załóż gumę nad kolanami.\n2. W półprzysiadzie wykonuj kroki boczne.' },
-  { id: 106, name: 'Wall Sit', category: 'Trening ogólnorozwojowy', bodyPart: 'Nogi', difficulty: 'Średnie', duration: '3 min', description: 'Izometryczne wzmacnianie nóg.', instructions: '1. Oprzyj plecy o ścianę.\n2. Zejdź do pozycji „siedzenia” z kątem 90° w kolanach.\n3. Utrzymaj pozycję.' },
-  { id: 107, name: 'Dead Bug', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Średnie', duration: '5 min', description: 'Kontrola core w ruchu.', instructions: '1. Leżenie na plecach, ręce i nogi w górze.\n2. Opuszczaj naprzemiennie rękę i nogę.' },
+  { id: 106, name: 'Wall Sit', category: 'Trening ogólnorozwojowy', bodyPart: 'Nogi', difficulty: 'Średnie', duration: '3 min', videoUrl: '/videos/konczyna-dolna/wall sit with swissball.mov', description: 'Izometryczne wzmacnianie nóg.', instructions: '1. Oprzyj plecy o ścianę.\n2. Zejdź do pozycji „siedzenia” z kątem 90° w kolanach.\n3. Utrzymaj pozycję.' },
+  { id: 107, name: 'Dead Bug', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Średnie', duration: '5 min', videoUrl: '/videos/FBW/deadbug.mov', description: 'Kontrola core w ruchu.', instructions: '1. Leżenie na plecach, ręce i nogi w górze.\n2. Opuszczaj naprzemiennie rękę i nogę.' },
   { id: 108, name: 'Spacer farmera z obciążeniem', category: 'Trening ogólnorozwojowy', bodyPart: 'Całe ciało', difficulty: 'Średnie', duration: '5 min', description: 'Chód z lekkim obciążeniem w dłoniach.', instructions: '1. Weź hantle lub kettlebells.\n2. Idź prosto z zachowaniem prostych pleców.' },
   { id: 109, name: 'Mobilizacja bioder', category: 'Trening ogólnorozwojowy', bodyPart: 'Biodro', difficulty: 'Łatwe', duration: '4 min', description: 'Zakres ruchu i rozluźnienie bioder.', instructions: '1. Klęk jednonóż, drugą nogę z przodu.\n2. Delikatnie pogłębiaj wykrok w przód.' },
   { id: 110, name: 'Ćwiczenia stabilizacji core', category: 'Trening ogólnorozwojowy', bodyPart: 'Core', difficulty: 'Średnie', duration: '5 min', description: 'Stabilizacja centralna.', instructions: '1. Pozycja podporu lub dead bug.\n2. Utrzymuj napięty brzuch przez cały czas.' },

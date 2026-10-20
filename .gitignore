@@ -16,3 +16,7 @@ dist/
 
 # Vite
 *.local
+.vercel
+
+# Raw screenshot originals (not needed for build)
+Screeny/
